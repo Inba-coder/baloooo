@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Mani Construction Materials</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="contact-container">
+        <div class="contact-header">
+            <h2>CONTACT US</h2>
+            <p>Get in touch with us for all your construction material needs</p>
+        </div>
+        
+        <div class="contact-info">
+            <h3>For Further Details Contact Us:</h3>
+            
+            <div class="contact-details">
+                <div class="contact-item">
+                    <h4>mani Enterprices</h4>
+                    <p><strong>AMBUR</strong></p>
+                    <p>Phone: 9585774780</p>
+                    <p>Landline: 9585774780</p>
+                </div>
+                
+                <div class="contact-item">
+                    <h4>Business Hours</h4>
+                    <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
+                    <p>Saturday: 9:00 AM - 4:00 PM</p>
+                    <p>Sunday: Closed</p>
+                </div>
+                
+                <div class="contact-item">
+                    <h4>Email Support</h4>
+                    <p>info@maniconstruction.com</p>
+                    <p>support@maniconstruction.com</p>
+                    <p>orders@maniconstruction.com</p>
+                </div>
+                
+                <div class="contact-item">
+                    <h4>Emergency Contact</h4>
+                    <p>24/7 Emergency Line: +91-9585774780</p>
+                    <p>For urgent deliveries and support</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="contact-form-container">
+            <h3>Send us a Message</h3>
+            <form class="contact-form" onsubmit="handleContact(event)">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="subject">Subject:</label>
+                    <input type="text" id="subject" name="subject" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+                
+                <button type="submit" class="btn">Send Message</button>
+            </form>
+        </div>
+        
+        <div style="text-align: center; margin-top: 30px;">
+            <a href="fornt.html" class="btn">Back to Home</a>
+        </div>
+    </div>
+    
+    <script src="app.js"></script>
+</body>
+</html>
+

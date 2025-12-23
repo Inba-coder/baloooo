@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details - Mani Construction Materials</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .products-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .page-header {
+            text-align: center;
+            margin-bottom: 40px;
+            animation: fadeInDown 1s ease-out;
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .page-header h1 {
+            color: #2c3e50;
+            font-size: 3em;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .page-header p {
+            color: #7f8c8d;
+            font-size: 1.2em;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            animation: slideInUp 0.8s ease-out;
+        }
+        
+        .product-card:nth-child(1) { animation-delay: 0.1s; }
+        .product-card:nth-child(2) { animation-delay: 0.2s; }
+        .product-card:nth-child(3) { animation-delay: 0.3s; }
+        .product-card:nth-child(4) { animation-delay: 0.4s; }
+        .product-card:nth-child(5) { animation-delay: 0.5s; }
+        .product-card:nth-child(6) { animation-delay: 0.6s; }
+        
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .product-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4em;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .product-image::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="10" r="0.5" fill="rgba(255,255,255,0.1)"/><circle cx="10" cy="60" r="0.5" fill="rgba(255,255,255,0.1)"/><circle cx="90" cy="40" r="0.5" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .product-content {
+            padding: 25px;
+        }
+        
+        .product-title {
+            color: #2c3e50;
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .product-description {
+            color: #7f8c8d;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-size: 0.95em;
+        }
+        
+        .product-specs {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .spec-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 0.9em;
+        }
+        
+        .spec-label {
+            color: #2c3e50;
+            font-weight: bold;
+        }
+        
+        .spec-value {
+            color: #7f8c8d;
+        }
+        
+        .product-price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .price {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #e74c3c;
+        }
+        
+        .price-unit {
+            font-size: 0.8em;
+            color: #7f8c8d;
+        }
+        
+        .product-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex: 1;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #2980b9, #1f4e79);
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, #95a5a6, #7f8c8d);
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .btn-secondary:hover {
+            background: linear-gradient(135deg, #7f8c8d, #6c7b7d);
+            transform: translateY(-2px);
+        }
+        
+        .category-section {
+            margin-bottom: 50px;
+        }
+        
+        .category-title {
+            color: #2c3e50;
+            font-size: 2.2em;
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .category-title::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            border-radius: 2px;
+        }
+        
+        .features-section {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-top: 40px;
+            animation: fadeIn 1.5s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .feature-item {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .feature-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+        
+        .feature-title {
+            color: #2c3e50;
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .feature-description {
+            color: #7f8c8d;
+            line-height: 1.6;
+        }
+        
+        .cta-section {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            margin-top: 40px;
+            animation: slideInUp 1.8s ease-out;
+        }
+        
+        .cta-section h2 {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+        
+        .cta-section p {
+            font-size: 1.2em;
+            margin-bottom: 25px;
+            opacity: 0.9;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .btn-cta {
+            background: white;
+            color: #e74c3c;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn-cta:hover {
+            background: #f8f9fa;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        @media (max-width: 768px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .page-header h1 {
+                font-size: 2.5em;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .product-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="products-container">
+        <div class="page-header">
+            <h1>🏗️ Construction Materials</h1>
+            <p>Premium quality building materials for all your construction needs. From foundation to finish, we provide the best materials for your projects.</p>
+        </div>
+        
+        <div class="category-section">
+            <h2 class="category-title">Building Materials</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">🧱</div>
+                    <div class="product-content">
+                        <h3 class="product-title">Premium Red Bricks</h3>
+                        <p class="product-description">
+                            High-quality red clay bricks manufactured using traditional methods. These bricks offer excellent durability, thermal insulation, and fire resistance. Perfect for residential and commercial construction projects.
+                        </p>
+                        <div class="product-specs">
+                            <div class="spec-item">
+                                <span class="spec-label">Size:</span>
+                                <span class="spec-value">9" x 4.5" x 3"</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Compressive Strength:</span>
+                                <span class="spec-value">3.5 N/mm²</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Water Absorption:</span>
+                                <span class="spec-value">≤ 20%</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Grade:</span>
+                                <span class="spec-value">A+</span>
+                            </div>
+                        </div>
+                        <div class="product-price">
+                            <span class="price">₹8.50</span>
+                            <span class="price-unit">per piece</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="btn-primary">Order Now</button>
+                            <button class="btn-secondary">View Details</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image">🏗️</div>
+                    <div class="product-content">
+                        <h3 class="product-title">OPC Cement (53 Grade)</h3>
+                        <p class="product-description">
+                            Ordinary Portland Cement 53 Grade with superior strength and durability. Ideal for high-rise buildings, bridges, and heavy-duty construction. Provides excellent workability and faster setting time.
+                        </p>
+                        <div class="product-specs">
+                            <div class="spec-item">
+                                <span class="spec-label">Grade:</span>
+                                <span class="spec-value">53 Grade OPC</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Compressive Strength:</span>
+                                <span class="spec-value">53 N/mm² (28 days)</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Setting Time:</span>
+                                <span class="spec-value">30-60 minutes</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Packaging:</span>
+                                <span class="spec-value">50kg bags</span>
+                            </div>
+                        </div>
+                        <div class="product-price">
+                            <span class="price">₹380</span>
+                            <span class="price-unit">per bag</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="btn-primary">Order Now</button>
+                            <button class="btn-secondary">View Details</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image">🔩</div>
+                    <div class="product-content">
+                        <h3 class="product-title">TMT Steel Bars</h3>
+                        <p class="product-description">
+                            Thermo-Mechanically Treated steel bars with superior strength and ductility. These bars offer excellent corrosion resistance and are perfect for reinforced concrete structures, ensuring long-lasting construction.
+                        </p>
+                        <div class="product-specs">
+                            <div class="spec-item">
+                                <span class="spec-label">Grade:</span>
+                                <span class="spec-value">Fe 500D</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Yield Strength:</span>
+                                <span class="spec-value">500 N/mm²</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Diameters:</span>
+                                <span class="spec-value">8mm - 32mm</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Length:</span>
+                                <span class="spec-value">12m standard</span>
+                            </div>
+                        </div>
+                        <div class="product-price">
+                            <span class="price">₹68</span>
+                            <span class="price-unit">per kg</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="btn-primary">Order Now</button>
+                            <button class="btn-secondary">View Details</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image">🏔️</div>
+                    <div class="product-content">
+                        <h3 class="product-title">River Sand (Fine)</h3>
+                        <p class="product-description">
+                            Premium quality river sand with excellent fineness modulus. Clean, well-graded sand perfect for concrete mixing, plastering, and masonry work. Free from impurities and organic matter.
+                        </p>
+                        <div class="product-specs">
+                            <div class="spec-item">
+                                <span class="spec-label">Fineness Modulus:</span>
+                                <span class="spec-value">2.6 - 2.9</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Silt Content:</span>
+                                <span class="spec-value">≤ 3%</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Moisture Content:</span>
+                                <span class="spec-value">≤ 5%</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Grading:</span>
+                                <span class="spec-value">Zone II</span>
+                            </div>
+                        </div>
+                        <div class="product-price">
+                            <span class="price">₹48</span>
+                            <span class="price-unit">per cft</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="btn-primary">Order Now</button>
+                            <button class="btn-secondary">View Details</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image">🪨</div>
+                    <div class="product-content">
+                        <h3 class="product-title">Coarse Aggregate (20mm)</h3>
+                        <p class="product-description">
+                            High-quality crushed stone aggregate with excellent strength and durability. Perfect for concrete production, road construction, and foundation work. Provides superior bonding with cement.
+                        </p>
+                        <div class="product-specs">
+                            <div class="spec-item">
+                                <span class="spec-label">Size:</span>
+                                <span class="spec-value">20mm down</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Crushing Value:</span>
+                                <span class="spec-value">≤ 30%</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Impact Value:</span>
+                                <span class="spec-value">≤ 30%</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Flakiness Index:</span>
+                                <span class="spec-value">≤ 15%</span>
+                            </div>
+                        </div>
+                        <div class="product-price">
+                            <span class="price">₹35</span>
+                            <span class="price-unit">per cft</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="btn-primary">Order Now</button>
+                            <button class="btn-secondary">View Details</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image">🧱</div>
+                    <div class="product-content">
+                        <h3 class="product-title">Fly Ash Bricks</h3>
+                        <p class="product-description">
+                            Environmentally friendly fly ash bricks made from industrial waste. These bricks offer superior thermal insulation, reduced water absorption, and excellent dimensional stability. Perfect for sustainable construction.
+                        </p>
+                        <div class="product-specs">
+                            <div class="spec-item">
+                                <span class="spec-label">Size:</span>
+                                <span class="spec-value">9" x 4.5" x 3"</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Compressive Strength:</span>
+                                <span class="spec-value">4.0 N/mm²</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Water Absorption:</span>
+                                <span class="spec-value">≤ 12%</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Fly Ash Content:</span>
+                                <span class="spec-value">≥ 60%</span>
+                            </div>
+                        </div>
+                        <div class="product-price">
+                            <span class="price">₹7.50</span>
+                            <span class="price-unit">per piece</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="btn-primary">Order Now</button>
+                            <button class="btn-secondary">View Details</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="features-section">
+            <h2 style="text-align: center; color: #2c3e50; margin-bottom: 20px;">Why Choose Our Materials?</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">🛡️</div>
+                    <h3 class="feature-title">Quality Assured</h3>
+                    <p class="feature-description">All materials undergo rigorous quality testing to ensure they meet international standards and specifications.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🚚</div>
+                    <h3 class="feature-title">Fast Delivery</h3>
+                    <p class="feature-description">Quick and reliable delivery service to your construction site with proper handling and storage.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">💰</div>
+                    <h3 class="feature-title">Competitive Prices</h3>
+                    <p class="feature-description">Best market rates with bulk order discounts and flexible payment options for your convenience.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📞</div>
+                    <h3 class="feature-title">24/7 Support</h3>
+                    <p class="feature-description">Round-the-clock customer support and technical assistance for all your construction needs.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="cta-section">
+            <h2>Ready to Start Your Project?</h2>
+            <p>Get a free quote for your construction materials and start building your dream project today!</p>
+            <div class="cta-buttons">
+                <a href="contact.html" class="btn-cta">Get Quote</a>
+                <a href="payment.html" class="btn-cta">Make Payment</a>
+                <a href="fornt.html" class="btn-cta">Back to Home</a>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Add interactive functionality
+        document.querySelectorAll('.btn-primary').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const productCard = this.closest('.product-card');
+                const productTitle = productCard.querySelector('.product-title').textContent;
+                
+                // Show order confirmation
+                alert(`Order placed for ${productTitle}! Our team will contact you shortly.`);
+                
+                // Add animation
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 150);
+            });
+        });
+        
+        document.querySelectorAll('.btn-secondary').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const productCard = this.closest('.product-card');
+                const productTitle = productCard.querySelector('.product-title').textContent;
+                const productDescription = productCard.querySelector('.product-description').textContent;
+                
+                // Show detailed information
+                alert(`${productTitle}\n\n${productDescription}\n\nFor more details, please contact us at 9585774780`);
+            });
+        });
+        
+        // Add scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all product cards
+        document.querySelectorAll('.product-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>

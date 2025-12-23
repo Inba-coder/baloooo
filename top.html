@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mani Construction</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .compact-header {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: #ecf0f1;
+            padding: 8px 0;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .compact-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            margin-bottom: 4px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+        .compact-subtitle {
+            font-size: 0.8em;
+            color: #bdc3c7;
+            margin-bottom: 6px;
+        }
+        .compact-marquee {
+            background: rgba(231, 76, 60, 0.8);
+            color: white;
+            padding: 4px;
+            margin: 0 auto;
+            width: 80%;
+            border-radius: 3px;
+            font-size: 0.7em;
+        }
+        .compact-nav {
+            background-color: #34495e;
+            padding: 6px 0;
+            border-bottom: 2px solid #e74c3c;
+        }
+        .compact-nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 0;
+            padding: 0;
+        }
+        .compact-nav a {
+            color: #ecf0f1;
+            text-decoration: none;
+            padding: 4px 8px;
+            border-radius: 12px;
+            transition: all 0.2s ease;
+            font-size: 0.75em;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .compact-nav a:hover {
+            background-color: #e74c3c;
+            color: white;
+            transform: translateY(-1px);
+        }
+        @media (max-width: 768px) {
+            .compact-nav ul {
+                gap: 8px;
+            }
+            .compact-nav a {
+                font-size: 0.7em;
+                padding: 3px 6px;
+            }
+            .compact-title {
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="compact-header">
+        <div class="compact-title">MANI ENTRRPRISE AND MATERIALS</div>
+        <div class="compact-subtitle">Government Approved • Quality Assured</div>
+        <div class="compact-marquee">
+            <marquee scrolldelay="100" width="100%">🏗️ Premium Construction Materials • 🚚 Fast Delivery • 💰 Best Prices</marquee>
+        </div>
+    </div>
+    
+    <div class="compact-nav">
+        <ul>
+            <li><a href="about.html">About</a></li>
+            <li><a href="course details.html">Products</a></li>
+            <li><a href="features.html">Features</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="join.html">Sign Up</a></li>
+            <li><a href="payment.html">Payment</a></li>
+        </ul>
+    </div>
+</body>
+</html>
